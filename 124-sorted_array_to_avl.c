@@ -29,7 +29,7 @@ avl_t *sorted_array_to_avl(int *array, size_t size)
  */
 avl_t *_sort(avl_t *parent, int *array, int begin, int last)
 {
-	avl_t *root;
+	avl_t *source;
 	binary_tree_t *aux;
 	int middle = 0;
 
@@ -39,10 +39,10 @@ avl_t *_sort(avl_t *parent, int *array, int begin, int last)
 		aux = binary_tree_node((binary_tree_t *)parent, array[middle]);
 		if (aux == NULL)
 			return (NULL);
-		root = (avl_t *)aux;
-		root->left = _sort(root, array, begin, middle - 1);
-		root->right = _sort(root, array, middle + 1, last);
-		return (root);
+		source = (avl_t *)aux;
+		source->left = _sort(source, array, begin, middle - 1);
+		source->right = _sort(source, array, middle + 1, last);
+		return (source);
 	}
 	return (NULL);
 }

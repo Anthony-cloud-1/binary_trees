@@ -3,7 +3,7 @@
 bst_t *bst_remove(bst_t *root, int value);
 bst_t *bst_remove_recursive(bst_t *root, bst_t *node, int value);
 bst_t *bst_delete(bst_t *root, bst_t *node);
-bst_t *inorder_successor(bst_t *root);
+bst_t *inorder_heir(bst_t *root);
 
 /**
  * bst_remove - Removes a node from a Binary Search Tree.
@@ -48,7 +48,7 @@ bst_t *bst_remove_recursive(bst_t *root, bst_t *node, int value)
  */
 bst_t *bst_delete(bst_t *root, bst_t *node)
 {
-	bst_t *parent = node->parent, *successor = NULL;
+	bst_t *parent = node->parent, *heir = NULL;
 
 	/* No children or right-child only */
 	if (node->left == NULL)
@@ -77,19 +77,19 @@ bst_t *bst_delete(bst_t *root, bst_t *node)
 	}
 
 	/* Two children */
-	successor = inorder_successor(node->right);
-	node->n = successor->n;
+	heir = inorder_heir(node->right);
+	node->n = heir->n;
 
-	return (bst_delete(root, successor));
+	return (bst_delete(root, heir));
 }
 
 /**
- * inorder_successor - Returns the minimum value of a binary search tree.
+ * inorder_heir - Returns the minimum value of a binary search tree.
  * @root: A pointer to the root node of the BST to search.
  *
  * Return: The minimum value in @tree.
  */
-bst_t *inorder_successor(bst_t *root)
+bst_t *inorder_heir(bst_t *root)
 {
 	while (root->left != NULL)
 		root = root->left;

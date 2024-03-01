@@ -105,11 +105,11 @@ size_t _calc_height(const binary_tree_t *tree)
 {
 	if (tree)
 	{
-		size_t lt = 0, rt = 0;
+		size_t lef = 0, rig = 0;
 
-		lt = tree->left ? 1 + _calc_height(tree->left) : 1;
-		rt = tree->right ? 1 + _calc_height(tree->right) : 1;
-		return ((lt > rt) ? lt : rt);
+		lef = tree->left ? 1 + _calc_height(tree->left) : 1;
+		rig = tree->right ? 1 + _calc_height(tree->right) : 1;
+		return ((lef > rig) ? lef : rig);
 	}
 	return (0);
 }
